@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 from devpi_common.request import new_requests_session
 from devpi_jenkins import __version__
-from devpi_server.views import TriggerError
 import json
 import py
 
@@ -25,7 +24,7 @@ def devpiserver_indexconfig_defaults():
     return {"uploadtrigger_jenkins": None}
 
 
-def devpiserver_trigger(log, application_url, stage, projectname, version):
+def devpiserver_on_upload_sync(log, application_url, stage, projectname, version):
     jenkinsurl = stage.ixconfig.get("uploadtrigger_jenkins")
     if not jenkinsurl:
         return
@@ -52,7 +51,7 @@ def devpiserver_trigger(log, application_url, stage, projectname, version):
             },
                 files={"file0": ("file0", inputfile)})
     except session.Errors:
-        raise TriggerError("%s: failed to connect to jenkins at %s",
+        raise RuntimeError("%s: failed to connect to jenkins at %s",
                            projectname, jenkinsurl)
 
     if 200 <= r.status_code < 300:
@@ -61,5 +60,5 @@ def devpiserver_trigger(log, application_url, stage, projectname, version):
         log.error("%s: failed to trigger jenkins at %s", r.status_code,
                   jenkinsurl)
         log.debug(r.content)
-        raise TriggerError("%s: failed to trigger jenkins at %s",
+        raise RuntimeError("%s: failed to trigger jenkins at %s",
                            projectname, jenkinsurl)
