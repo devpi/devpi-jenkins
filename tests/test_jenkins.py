@@ -42,4 +42,4 @@ def test_upload_with_jenkins(mapp, reqmock):
     assert b'indexurl = "http://localhost/user1/dev"' in script
     assert b'virtualenvtar_url = "http://localhost/root/pypi/+f/f61/cdd983d2c4e6a/virtualenv-1.11.6.tar.gz"' in script
     assert b'devpi_install_index = "http://localhost/user1/dev/+simple/"' in script
-    assert b'testspec = "pkg1"' in script
+    assert b'testspec = "pkg1==2.6"' in script

@@ -37,7 +37,7 @@ def devpiserver_on_upload_sync(log, application_url, stage, projectname, version
             application_url +
             "/root/pypi/+f/f61/cdd983d2c4e6a/"
             "virtualenv-1.11.6.tar.gz"),
-        TESTSPEC=projectname,
+        TESTSPEC='%s==%s' % (projectname, version),
         DEVPI_INSTALL_INDEX=application_url + "/" + stage.name + "/+simple/")
     inputfile = py.io.BytesIO(source.encode("ascii"))
     session = new_requests_session(agent=("devpi-jenkins", __version__))
