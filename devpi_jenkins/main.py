@@ -1,9 +1,24 @@
 from __future__ import unicode_literals
 from devpi_common.request import new_requests_session
-from devpi_server.views import TriggerError, server_version
-from devpi_server.config import render_string
+from devpi_jenkins import __version__
+from devpi_server.views import TriggerError
 import json
 import py
+
+
+def render_string(confname, format=None, **kw):
+    template = confname + ".template"
+    from pkg_resources import resource_string
+    templatestring = resource_string("devpi_jenkins", template)
+    if not py.builtin._istext(templatestring):
+        templatestring = py.builtin._totext(templatestring, "utf-8")
+
+    kw = dict((x[0], str(x[1])) for x in kw.items())
+    if format is None:
+        result = templatestring.format(**kw)
+    else:
+        result = templatestring % kw
+    return result
 
 
 def devpiserver_indexconfig_defaults():
@@ -27,7 +42,7 @@ def devpiserver_trigger(log, application_url, stage, projectname, version):
         DEVPI_INSTALL_INDEX = application_url + "/" + stage.name + "/+simple/"
     )
     inputfile = py.io.BytesIO(source.encode("ascii"))
-    session = new_requests_session(agent=("server", server_version))
+    session = new_requests_session(agent=("devpi-jenkins", __version__))
     try:
         r = session.post(jenkinsurl, data={
                         "Submit": "Build",
