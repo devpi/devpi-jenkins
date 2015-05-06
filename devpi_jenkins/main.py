@@ -33,23 +33,23 @@ def devpiserver_on_upload_sync(log, application_url, stage, projectname, version
     source = render_string(
         "devpibootstrap.py",
         INDEXURL=application_url + "/" + stage.name,
-        VIRTUALENVTARURL= (application_url +
+        VIRTUALENVTARURL=(
+            application_url +
             "/root/pypi/+f/f61/cdd983d2c4e6a/"
-            "virtualenv-1.11.6.tar.gz"
-            ),
+            "virtualenv-1.11.6.tar.gz"),
         TESTSPEC=projectname,
-        DEVPI_INSTALL_INDEX = application_url + "/" + stage.name + "/+simple/"
-    )
+        DEVPI_INSTALL_INDEX=application_url + "/" + stage.name + "/+simple/")
     inputfile = py.io.BytesIO(source.encode("ascii"))
     session = new_requests_session(agent=("devpi-jenkins", __version__))
     try:
-        r = session.post(jenkinsurl, data={
-                        "Submit": "Build",
-                        "name": "jobscript.py",
-                        "json": json.dumps(
-                    {"parameter": {"name": "jobscript.py", "file": "file0"}}),
-            },
-                files={"file0": ("file0", inputfile)})
+        r = session.post(
+            jenkinsurl,
+            data={
+                "Submit": "Build",
+                "name": "jobscript.py",
+                "json": json.dumps({
+                    "parameter": {"name": "jobscript.py", "file": "file0"}})},
+            files={"file0": ("file0", inputfile)})
     except session.Errors:
         raise RuntimeError("%s: failed to connect to jenkins at %s",
                            projectname, jenkinsurl)
