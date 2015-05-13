@@ -190,4 +190,7 @@ packages from the pypi-mirroring ``root/pypi`` index.
 .. note::
 
     If working with multiple indices, it is usually more
-    convenient to use :ref:`devpi upload`.
+    convenient to use `devpi upload`_.
+
+.. _tox: http://tox.testrun.org
+.. _`devpi upload`: http://doc.devpi.net/latest/quickstart-releaseprocess.html#devpi-upload-uploading-one-or-more-packages
