@@ -1,9 +1,11 @@
 Changelog
 =========
 
-1.0.1 - Unreleased
+2.0.0 - Unreleased
 ------------------
 
+- fixes for devpi-server 3.0.0, older versions aren't supported anymore
+  [fschulze]
 
 
 1.0.0 - 2015-05-13
