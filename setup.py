@@ -39,7 +39,7 @@ setup(
         'devpi_server': [
             "devpi-jenkins = devpi_jenkins.main"]},
     install_requires=[
-        'devpi-server>=2.2.0.dev5'],
+        'devpi-server>=3.0.0.dev0'],
     include_package_data=True,
     zip_safe=False,
     packages=['devpi_jenkins'])
