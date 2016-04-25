@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.0 - Unreleased
+2.0.0 - 2016-04-25
 ------------------
 
 - Drop support for Python 2.6
