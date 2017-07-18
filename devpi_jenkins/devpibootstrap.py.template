@@ -181,6 +181,9 @@ def main(indexurl = "{INDEXURL}",
     log("starting Jenkins job for %s" % testspec)
     basedir = os.getcwd()
 
+    with open('testspec', 'w') as f:
+        f.write(testspec)
+
     # prepare a TMPDIR that resides in the Jenkins workspace
     # for installing devpi itself
     OLD_TMPDIR = os.environ.get("TMPDIR")
