@@ -26,6 +26,8 @@ This needs configuration on two sides:
 
 - Jenkins: adding one or more jobs which can get triggered by devpi-jenkins.
 
+.. _tox: https://tox.readthedocs.io/
+
 Configuring a devpi index to trigger Jenkins
 ++++++++++++++++++++++++++++++++++++++++++++
 
