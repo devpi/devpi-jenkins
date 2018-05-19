@@ -1,6 +1,13 @@
 Changelog
 =========
 
+2.0.1 - Unreleased
+------------------
+
+- Remove unused import form ``devpibootstrap.py.template``.
+  [fschulze]
+
+
 2.0.0 - 2016-04-25
 ------------------
 
