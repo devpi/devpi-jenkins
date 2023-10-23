@@ -7,7 +7,7 @@ Changelog
 - Fix for new pluggy version.
   [fschulze]
 
-- Remove unused import form ``devpibootstrap.py.template``.
+- Remove unused import from ``devpibootstrap.py.template``.
   [fschulze]
 
 
