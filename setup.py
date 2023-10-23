@@ -25,7 +25,7 @@ setup(
     url="https://github.com/devpi/devpi-jenkins",
     version=get_version("devpi_jenkins"),
     maintainer="Florian Schulze",
-    maintainer_email="florian.schulze@gmx.net",
+    maintainer_email="mail@florian-schulze.net",
     license="MIT",
     classifiers=[
         "Environment :: Web Environment",
@@ -34,12 +34,13 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python"] + [
             "Programming Language :: Python :: %s" % x
-            for x in "2 3 2.7 3.4".split()],
+            for x in "3 3.7 3.8 3.9 3.10 3.11".split()],
     entry_points={
         'devpi_server': [
             "devpi-jenkins = devpi_jenkins.main"]},
     install_requires=[
         'devpi-server>=3.0.0.dev0'],
     include_package_data=True,
+    python_requires='>=3.7',
     zip_safe=False,
     packages=['devpi_jenkins'])

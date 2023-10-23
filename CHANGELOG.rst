@@ -4,6 +4,9 @@ Changelog
 3.0.0 - Unreleased
 ------------------
 
+- Drop support for Python <= 3.6.
+  [fschulze]
+
 - Fix for new pluggy version.
   [fschulze]
 
