@@ -1,8 +1,11 @@
 Changelog
 =========
 
-2.0.1 - Unreleased
+3.0.0 - Unreleased
 ------------------
+
+- Fix for new pluggy version.
+  [fschulze]
 
 - Remove unused import form ``devpibootstrap.py.template``.
   [fschulze]

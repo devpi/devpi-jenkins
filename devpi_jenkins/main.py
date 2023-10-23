@@ -1,8 +1,12 @@
 from __future__ import unicode_literals
 from devpi_common.request import new_requests_session
 from devpi_jenkins import __version__
+from pluggy import HookimplMarker
 import json
 import py
+
+
+server_hookimpl = HookimplMarker("devpiserver")
 
 
 def render_string(confname, format=None, **kw):
@@ -20,10 +24,12 @@ def render_string(confname, format=None, **kw):
     return result
 
 
+@server_hookimpl
 def devpiserver_indexconfig_defaults():
     return {"uploadtrigger_jenkins": None}
 
 
+@server_hookimpl
 def devpiserver_on_upload_sync(log, application_url, stage, project, version):
     jenkinsurl = stage.ixconfig.get("uploadtrigger_jenkins")
     if not jenkinsurl:
