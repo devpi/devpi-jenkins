@@ -18,6 +18,10 @@ jobs:
             tox-envs: "py38"
           - python-version: "3.12"
             tox-envs: "py312"
+          - python-version: "3.8"
+            tox-envs: "py38-server520"
+          - python-version: "3.12"
+            tox-envs: "py312-server520"
 
     steps:
       - uses: "actions/checkout@v4"
