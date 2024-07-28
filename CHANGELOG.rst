@@ -1,6 +1,13 @@
 Changelog
 =========
 
+3.0.1 - Unreleased
+------------------
+
+- Replace pkg_resources with importlib.resources.
+  [fschulze]
+
+
 3.0.0 - 2023-12-19
 ------------------
 
