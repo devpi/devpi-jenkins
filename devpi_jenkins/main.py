@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 from devpi_common.request import new_requests_session
 from devpi_jenkins import __version__
+from io import BytesIO
 from pluggy import HookimplMarker
 import json
-import py
 
 
 server_hookimpl = HookimplMarker("devpiserver")
@@ -43,7 +43,7 @@ def devpiserver_on_upload_sync(log, application_url, stage, project, version):
             "virtualenv-1.11.6.tar.gz"),
         TESTSPEC='%s==%s' % (project, version),
         DEVPI_INSTALL_INDEX=application_url + "/" + stage.name + "/+simple/")
-    inputfile = py.io.BytesIO(source.encode("ascii"))
+    inputfile = BytesIO(source.encode("ascii"))
     session = new_requests_session(agent=("devpi-jenkins", __version__))
     try:
         r = session.post(

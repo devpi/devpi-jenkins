@@ -7,6 +7,9 @@ Changelog
 - Replace pkg_resources with importlib.resources.
   [fschulze]
 
+- Replace unmaintained py library usage with builtin Python functionality.
+  [fschulze]
+
 
 3.0.0 - 2023-12-19
 ------------------

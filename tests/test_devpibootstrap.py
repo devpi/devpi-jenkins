@@ -1,7 +1,9 @@
-import pytest
-import tarfile
-import py
 from devpi_jenkins.main import render_string
+import os
+import pytest
+import shutil
+import tarfile
+
 
 bootstrapindex = "http://localhost:3141/root/dev/+simple/"
 
@@ -15,7 +17,7 @@ def bootstrapdict():
         DEVPI_INSTALL_INDEX="http://localhost:3141/root/dev",
         TESTSPEC="pytest")
     d = {}
-    py.builtin.exec_(py.code.compile(source), d)
+    exec(compile(source, "<from bootstrapdict>", "exec"), d)
     return d
 
 
@@ -60,15 +62,15 @@ def test_get_virtualenv(tmpdir, bootstrapdict, virtualenv_tar, monkeypatch):
 
     def urlretrieve(url, localpath):
         assert url == vurl
-        py.path.local(virtualenv_tar).copy(py.path.local(localpath))
+        shutil.copy(virtualenv_tar, localpath)
 
     monkeypatch.setitem(bootstrapdict, "urlretrieve", urlretrieve)
     virtualenv_script = get_virtualenv(vurl)
-    assert py.std.os.path.exists(virtualenv_script)
+    assert os.path.exists(virtualenv_script)
     # check that a second attempt won't hit the web
     monkeypatch.setitem(bootstrapdict, "wget", None)
     virtualenv_script = get_virtualenv(vurl)
-    assert py.std.os.path.exists(virtualenv_script)
+    assert os.path.exists(virtualenv_script)
 
 
 @pytest.mark.xfail(reason="cannot provide current devpi-server "
@@ -86,7 +88,7 @@ def test_main(request, url_of_liveserver, mapp, tmpdir, monkeypatch):
         DEVPI_INSTALL_INDEX=url_of_liveserver + "/root/dev/+simple/",
         TESTSPEC="py")
     d = {}
-    py.builtin.exec_(py.code.compile(source), d)
+    exec(compile(source, "<from test_main>", "exec"), d)
     l = []
 
     def record(*args, **kwargs):
