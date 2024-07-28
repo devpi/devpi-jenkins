@@ -14,10 +14,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - python-version: "3.7"
-            tox-envs: "py37"
-          - python-version: "3.11"
-            tox-envs: "py311"
+          - python-version: "3.8"
+            tox-envs: "py38"
+          - python-version: "3.12"
+            tox-envs: "py312"
 
     steps:
       - uses: "actions/checkout@v4"

@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from devpi_common.request import new_requests_session
 from devpi_jenkins import __version__
 from io import BytesIO
