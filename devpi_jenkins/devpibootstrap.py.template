@@ -116,7 +116,10 @@ def get_virtualenv(virtualenvtar_url):
         archive = wget(virtualenvtar_url)
         log("got %s", archive)
         tar = tarfile.open(archive, "r:gz")
-        tar.extractall()
+        try:
+            tar.extractall(filter="data")
+        except TypeError:
+            tar.extractall()
         tar.close()
         assert path.exists(vdir)
         log("extracted %s", vdir)
