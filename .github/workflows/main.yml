@@ -6,7 +6,7 @@ on:
 
 jobs:
   tests:
-    name: "Python ${{ matrix.python-version }}"
+    name: "${{ matrix.tox-envs }} - Python ${{ matrix.python-version }}"
     runs-on: "ubuntu-latest"
     env:
       PY_COLORS: 1
