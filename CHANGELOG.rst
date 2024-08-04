@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.1 - Unreleased
+3.0.1 - 2024-08-04
 ------------------
 
 - Replace pkg_resources with importlib.resources.
@@ -9,6 +9,11 @@ Changelog
 
 - Replace unmaintained py library usage with builtin Python functionality.
   [fschulze]
+
+- Drop support for Python <= 3.7.
+  [fschulze]
+
+- Add support for Python 3.12.
 
 
 3.0.0 - 2023-12-19
